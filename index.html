@@ -9,43 +9,178 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
   <title>Coastal Postnatal</title>
+  <style>
+    /* Slider Styles */
+    .slider {
+      position: relative;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .card {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .card--active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pagination__dots {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .pagination__dots--selected {
+      background: #666;
+    }
+    
+    /* Added styles for service packages */
+    .services {
+      padding: 8rem 3rem;
+      text-align: center;
+    }
+    
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .service-card__icon {
+      font-size: 3rem;
+      color: #ee6787;
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-card__title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #5a6284;
+    }
+    
+    .service-card__desc {
+      font-size: 1.6rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 8rem 3rem;
+      background-color: #f9f9f9;
+    }
+    
+    .faq__container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq__item {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 2rem;
+    }
+    
+    .faq__question {
+      font-size: 1.8rem;
+      color: #ee6787;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    
+    .faq__answer {
+      font-size: 1.6rem;
+      line-height: 1.6;
+    }
+
+    /* Added styles for the FAQ intro text */
+    .faq__intro {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #5a6284;
+      margin-bottom: 3rem;
+      padding: 1rem 2rem;
+      border-left: 4px solid #ee6787;
+      background-color: #f0f0f0;
+      display: inline-block;
+    }
+
+    /* Logo styles for We're Coming Home section */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .custom-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ee6787, #f59460);
+      margin: 0 auto;
+      color: white;
+      font-size: 3rem;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <header class="header">
-
-<div class="header__brand-wrapper">
-  <a href="/" class="header__brand">
-    <span class="header__brand-title">Central Coast,</span>
-    <a href="https://maps.app.goo.gl/SDBmF3xyn4HQNLsA6" class="header__brand-author">NSW</a>
-  </a>
-</div>
-
-      <div class="header__hamburger-wrapper">
-        <div id="hamburger" class="hamburger">
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-        </div>
+      <div class="header__brand-wrapper">
+        <a href="/" class="header__brand">
+          <span class="header__brand-title">Coastal Postnatal</span>
+        </a>
       </div>
+      <button onclick="window.location.href='mailto:info@coastalpostnatal.com'">Email Us</button>
     </header>
 
     <section class="cta">
       <div class="cta__box">
         <span class="logo"><img src="assets/five.png" alt="Logo" /></span>
         <h1 class="cta__heading">Coastal Postnatal</h1>
-        <p class="cta__text">Expert care, close to home.</p>
-        <a href="#" class="cta__button">Book a Consultation</a>
+        <p class="cta__text">Supporting your journey from birth to confident parenting</p>
+        <a href="#contact-form" class="cta__button">Book a Consultation</a>
       </div>
     </section>
 
     <section class="features">
       <h2 class="secondary-heading">
-        Your Local Central Coast Midwife
+        Comprehensive Postnatal Support
       </h2>
       <p class="text">
-        Providing compassionate and personalised care throughout your pregnancy journey.
+        Family-centered care for new parents and growing families on the Central Coast.
       </p>
 
       <div class="features__boxes">
@@ -53,138 +188,236 @@
           <div class="features__box-icon">
             <i class="fas fa-child"></i>
           </div>
-          <div class="features__box-caption">Aliquam</div>
-        </div>
-        <div class="features__box">
-          <div class="features__box-icon"><i class="far fa-heart"></i></div>
-          <div class="features__box-caption">Feugiat</div>
-        </div>
-        <div class="features__box">
-          <div class="features__box-icon"><i class="fas fa-female"></i></div>
-          <div class="features__box-caption">Consequat</div>
+          <div class="features__box-caption">Postnatal</div>
         </div>
         <div class="features__box">
           <div class="features__box-icon"><i class="fas fa-home"></i></div>
-          <div class="features__box-caption">Phasellus</div>
+          <div class="features__box-caption">Household</div>
+        </div>
+        <div class="features__box">
+          <div class="features__box-icon"><i class="fas fa-female"></i></div>
+          <div class="features__box-caption">Feeding</div>
+        </div>
+        <div class="features__box">
+          <div class="features__box-icon"><i class="fas fa-heart"></i></div>
+          <div class="features__box-caption">Referrals</div>
         </div>
       </div>
     </section>
 
     <section class="middle-hero">
       <div class="middle-hero__left">
-        <h2 class="secondary-heading secondary-heading--white">Rosie Hichens</h2>
-        <p class="text text--white">I am a dedicated midwife with X years of experience. I believe in empowering expecting mothers with personalised pregnancy services.</p>
-        <a href="#" class="cta__button">More</a>
+        <h2 class="secondary-heading secondary-heading--white">Who We Are</h2>
+        <p class="text text--white">We are a collaboration of midwives passionate about family-centered care. With years of experience, we understand the enormity of birth and early parenting. We support informed choice without judgement, recognising everyone's individuality and respecting your decisions.</p>
+        <p class="text text--white">We recognise the physical toll and exhaustion of those first days, weeks, or months. Whether you're a first-time parent, growing your family, or a grandparent refreshing skills, we're here to support your transition with evidence-based care and practical assistance.</p>
+        <a href="#services" class="cta__button">Our Services</a>
       </div>
       <div class="middle-hero__right"></div>
     </section>
 
     <section class="showcase">
-      <h2 class="secondary-heading">Services</h2>
+      <h2 class="secondary-heading">Tailored Care Packages</h2>
       <p class="text">
-        Compassionate midwifery care, including postpartum support, along with meal preparation and household assistance to help you focus on your family.
+        Individualised support designed around your unique needs during the postnatal period.
       </p>
 
       <div class="slider">
         <div data-card="1" class="card card--active">
-          <img src="./assets/cardimg.jpg" alt="A guy looking at a waterfall" class="card__img">
-          <p class="card__caption">Comprehensive Care</p>
+          <img src="./assets/1.png" alt="Newborn care" class="card__img">
+          <p class="card__caption">Overnight Newborn Care</p>
         </div>
         <div data-card="2" class="card">
-          <img src="./assets/cardimg2.jpg" alt="A guy looking at a waterfall" class="card__img">
-          <p class="card__caption">Labour and Delivery Support</p>
+          <img src="./assets/2.png" alt="Home transition" class="card__img">
+          <p class="card__caption">Home Transition Support</p>
         </div>
         <div data-card="3" class="card">
-          <img src="./assets/cardimg3.jpg" alt="A guy looking at a waterfall" class="card__img">
-          <p class="card__caption">Postpartum Care</p>
+          <img src="./assets/3.png" alt="Feeding support" class="card__img">
+          <p class="card__caption">Feeding and Routine Setup</p>
         </div>
         <div data-card="4" class="card">
-          <img src="./assets/cardimg4.jpg" alt="A guy looking at a waterfall" class="card__img">
-          <p class="card__caption">Newborn Care</p>
+          <img src="./assets/4.png" alt="Travel support" class="card__img">
+          <p class="card__caption">Travel and Event Support</p>
         </div>
         <div data-card="5" class="card">
-          <img src="./assets/cardimg5.jpg" alt="A guy looking at a waterfall" class="card__img">
-          <p class="card__caption">Household Support</p>
+          <img src="./assets/5.png" alt="Trauma support" class="card__img">
+          <p class="card__caption">Trauma and Grief Support</p>
         </div>
       </div>
 
       <div class="pagination">
-        <div data-card="1" class="pagination__dots pagination__dots--selected"></div>
+        <div data-card="1" class="pagination__dots"></div>
         <div data-card="2" class="pagination__dots"></div>
         <div data-card="3" class="pagination__dots"></div>
         <div data-card="4" class="pagination__dots"></div>
         <div data-card="5" class="pagination__dots"></div>
       </div>
     </section>
+    
+    <section id="services" class="services">
+      <h2 class="secondary-heading">Our Service Packages</h2>
+      <p class="text">
+        We provide personalised care tailored to your specific needs. Our packages are flexible and can be customised to serve you best.
+      </p>
+      
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3 class="service-card__title">While You Were Out</h3>
+          <p class="service-card__desc">Support during your hospital stay with home preparation, pet care, and nursery setup. Ideal for those rushed to hospital or needing help with household tasks.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-card__icon">
+            <i class="fas fa-bed"></i>
+          </div>
+          <h3 class="service-card__title">We're Coming Home</h3>
+          <p class="service-card__desc">Prepare for your homecoming with ready meals, fresh linens, and someone there to help you settle in while you rest and recover.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-card__icon">
+            <i class="fas fa-moon"></i>
+          </div>
+          <h3 class="service-card__title">Overnight Care</h3>
+          <p class="service-card__desc">Experienced night support to follow your feeding plan while you catch up on much-needed sleep. Popular worldwide for new families.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-card__icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 class="service-card__title">Routine Support</h3>
+          <p class="service-card__desc">Establish routines that work for both you and your baby, setting you up for success in the early weeks and beyond.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-card__icon">
+            <i class="fas fa-user-friends"></i>
+          </div>
+          <h3 class="service-card__title">Grandparent Support</h3>
+          <p class="service-card__desc">Refresh your skills and learn about current parenting practices so you can confidently support your growing family.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-card__icon">
+            <i class="fas fa-plane"></i>
+          </div>
+          <h3 class="service-card__title">Travel Support</h3>
+          <p class="service-card__desc">Assistance with travel plans, whether it's a long-haul flight, road trip, or just a night away for a celebration.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="faq">
+      <h2 class="secondary-heading">Common Questions</h2>
+      <p class="faq__intro">
+        We understand you may have questions about our services. Here are answers to some common queries:
+      </p>
+      
+      <div class="faq__container">
+        <div class="faq__item">
+          <h3 class="faq__question">When should I book your services?</h3>
+          <p class="faq__answer">We understand that babies rarely follow a schedule! When you book with us, we take into account that your baby might arrive earlier or later than expected. We'll work with you to create a flexible plan that can adapt to your needs.</p>
+        </div>
+        
+        <div class="faq__item">
+          <h3 class="faq__question">How do your services work?</h3>
+          <p class="faq__answer">We come to you when you need us. Whether you want support for the first few days at home, overnight care, or assistance when your partner returns to work, we tailor our services to fit your specific situation.</p>
+        </div>
+        
+        <div class="faq__item">
+          <h3 class="faq__question">What if I need additional support?</h3>
+          <p class="faq__answer">We offer temporary accommodation for those who need a peaceful transition before returning home. We can also provide referrals to other excellent local services like photographers, yoga instructors, and exercise providers.</p>
+        </div>
+        
+        <div class="faq__item">
+          <h3 class="faq__question">Do you offer emotional support for birth trauma?</h3>
+          <p class="faq__answer">Yes, we have qualified counsellors who can help you work through birth trauma or grief. We understand that birth can be a significant emotional event for parents and support people alike.</p>
+        </div>
+      </div>
+    </section>
 
-    <section class="subscriptions">
+    <section id="contact-form" class="subscriptions">
       <h2 class="secondary-heading secondary-heading--white">
         Contact for Support and Guidance
       </h2>
       <p class="text text--white">
         Reach out to explore tailored support for your birthing journey.
       </p>
-
-      <form class="form">
-        <input type="email" class="form__input" placeholder="Your email address">
-        <button class="form__button">Enquire now</button>
+    
+      <form class="form" action="https://formspree.io/f/manqrdwl" method="POST" style="display: flex; flex-direction: column; max-width: 500px; margin: 0 auto;">
+        <input type="text" class="form__input" name="name" placeholder="Your name" required style="margin-bottom: 15px; color: white;">
+        <input type="email" class="form__input" name="email" placeholder="Your email address" required style="margin-bottom: 15px; color: white;">
+        <input type="text" class="form__input" name="suburb" placeholder="Your suburb" style="margin-bottom: 15px; color: white;">
+        <input type="tel" class="form__input" name="mobile" placeholder="Your mobile number" style="margin-bottom: 15px; color: white;">
+        <textarea class="form__input" name="message" placeholder="Your message" required style="margin-bottom: 15px; height: 120px; color: white;"></textarea>
+        <button type="submit" class="form__button" style="width: 100%; padding: 12px 0;">Enquire now</button>
       </form>
     </section>
 
     <section class="contact">
       <h2 class="secondary-heading">
-        Get in Touch
+        Continuous Support
       </h2>
       <p class="text">
-        Lorem ipsum dolor sit amet nullam consequat, feugiat nisl tempus.
+        Available day and night to help you navigate the challenges of new parenthood.
       </p>
 
       <div class="contact__triptych">
         <div class="panel">
           <div class="panel__icon"><i class="far fa-envelope"></i></div>
-          <div class="panel__text"><a href="#" class="panel__link">coastalpostnatal@gmail.com</a></div>
+          <div class="panel__text"><a href="mailto:coastalpostnatal@gmail.com" class="panel__link">coastalpostnatal@gmail.com</a></div>
         </div>
         <div class="panel">
           <div class="panel__icon"><i class="far fa-map"></i></div>
-          <div class="panel__text">
-            <address class="panel__address">8/18 Range Road<br>
-            North Gosford, 2250</address>
-          </div>
+          <div class="panel__text">Central Coast, NSW</div>
         </div>
         <div class="panel">
-          <div class="panel__icon"><i class="fas fa-mobile-alt"></i></div>
-          <div class="panel__text"><a href="#" class="panel__link">(+61) 0404 000 000</a></div>
+          <div class="panel__icon"><i class="fas fa-phone"></i></div>
+          <div class="panel__text"><a href="tel:0409 694 636" class="panel__link">0409 694 636</a></div>
         </div>
       </div>
     </section>
 
     <footer class="footer">
-      <p class="footer__copyright">
-        &copy; 2024 Coastal Postnatal. All rights reserved.
-      </p>
-      <div class="footer__social-links">
-        <a href="#" class="footer__social-link"><i class="fab fa-twitter"></i></a>
+      <div class="footer__copyright">
+        &copy; 2025 Coastal Postnatal. All rights reserved.
+      </div>
+      <div class="footer__social">
         <a href="#" class="footer__social-link"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="footer__social-link"><i class="fab fa-linkedin-in"></i></a>
         <a href="#" class="footer__social-link"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="footer__social-link"><i class="fab fa-github"></i></a>
+        <a href="#" class="footer__social-link"><i class="fab fa-twitter"></i></a>
       </div>
     </footer>
   </div>
 
-  <nav id="nav" class="nav">
-    <div class="nav__links">
-      <a class="nav__link" href="#">Home</a>
-      <a class="nav__link" href="#">Generic</a>
-      <a class="nav__link" href="#">Elements</a>
-    </div>
-    <a href="#" class="cta__button cta__button--block cta__button--white u-margin-bottom-sm">Sign Up</a>
-    <a href="#" class="cta__button cta__button--block">Log In</a>
-    <i id="nav-close" class="fas fa-times nav__close"></i>
-  </nav>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-  <script src="js/script.js"></script>
+  <script>
+    // Slider functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.card');
+      const dots = document.querySelectorAll('.pagination__dots');
+      
+      // Set first dot as selected
+      dots[0].classList.add('pagination__dots--selected');
+      
+      // Add click event to dots
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          const cardId = this.getAttribute('data-card');
+          
+          // Remove active class from all cards and selected class from all dots
+          cards.forEach(card => card.classList.remove('card--active'));
+          dots.forEach(dot => dot.classList.remove('pagination__dots--selected'));
+          
+          // Add active class to clicked card and selected class to clicked dot
+          document.querySelector(`.card[data-card="${cardId}"]`).classList.add('card--active');
+          this.classList.add('pagination__dots--selected');
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
